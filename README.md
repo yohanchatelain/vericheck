@@ -24,13 +24,13 @@ no matter how many IEEE FP instructions are really executed.
 
 At the end of the execution, Vericheck prints the number of FP instructions executed for each function.
 Each line is formatted as :
-* <lib> -> <dir>/<file>:<function> : <fp>
+* `<lib> -> <dir>/<file>:<function> : <fp>`
 where
-- lib:      the object name (library or binary) of the function
-- dir:      the path to file that contains the function
-- file:     the file that contains the function
-- function: the name of the function
-- fp:       the number of fp instructions executed
+- `lib`:      the object name (library or binary) of the function
+- `dir`:      the path to file that contains the function
+- `file`:     the file that contains the function
+- `function`: the name of the function
+- `fp`:       the number of fp instructions executed
 
 Exemple on `tests/test_kahan` from [Verificarlo](https://github.com/verificarlo/verificarlo.git) repository.
 

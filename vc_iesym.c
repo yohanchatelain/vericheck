@@ -47,7 +47,7 @@ static ULong nbIgnoredLibs = 0;
 static const HChar* ignoredLibsDefault[] = {"*/ld-*",
 					    "*/libc-*",
 					    "*libdl-*",
-					    "/libmpfr.*"};
+					    "*/libmpfr.*"};
 
 static ULong nbIgnoredFunctions = 0;
 static const HChar* ignoredFunctionsDefault[] = {"???","__libc*","_start"};
@@ -61,7 +61,8 @@ static const SizeT nbInterflopIncludedLibs = SIZE_ARRAY(interflopIncludedLibs);
 static const HChar* interflopExcludedFiles[] = {"logger.c",
 					       "options.c",
 						"tinymt64.*",
-						"printf_specifier.c"};
+						"printf_specifier.c",
+						"vprec_tools.c"};
 
 static const SizeT nbInterflopExcludedFiles = SIZE_ARRAY(interflopExcludedFiles);
  
@@ -84,7 +85,9 @@ static const HChar* interflopExcludedFunctions[] = {"*logger*",
 						    "_doublemul",
 						    "_doublediv",
 						    "_fast_pow2_binary64",
-						    "_fast_pow2_binary128"};
+						    "_fast_pow2_binary128",
+						    "_set_vprec_*",
+						    "_bitmask_binary*"};
 
 static const SizeT nbInterflopExcludedFunctions = SIZE_ARRAY(interflopExcludedFunctions);
 
@@ -107,11 +110,6 @@ void init_ignored_libs_default() {
     ignoredLibs[i] = (HChar*)VG_(malloc)("init.ign.libs.str",sizeof(HChar));
     VG_(strcpy)(ignoredLibs[i], ignoredLibsDefault[i]);
   }
-
-  /* VG_(dmsg)("Ignored libs initiliazed with:\n"); */
-  /* for (i = 0; i < nbIgnoredLibs; i++) { */
-  /*   VG_(dmsg)("... %s\n",ignoredLibs[i]); */
-  /* } */
   
   nbIgnoredFunctions = sizeof(ignoredFunctionsDefault)/sizeof(HChar*);
   ignoredFunctions = (HChar**)VG_(malloc)("init.ign.fun", nbIgnoredFunctions*sizeof(HChar*));
@@ -119,11 +117,6 @@ void init_ignored_libs_default() {
     ignoredFunctions[i] = (HChar*)VG_(malloc)("init.ign.fun.str",sizeof(HChar));
     VG_(strcpy)(ignoredFunctions[i], ignoredFunctionsDefault[i]);
   }
-
-  /* VG_(dmsg)("Ignored functions initiliazed with:\n"); */
-  /* for (i = 0; i < nbIgnoredFunctions; i++) { */
-  /*   VG_(dmsg)("... %s\n",ignoredFunctions[i]); */
-  /* } */
 
   
 }

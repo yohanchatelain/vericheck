@@ -20,6 +20,16 @@ One interflop operation corresponds to its elementary counterpart
 in IEEE. Hence, _interflop_float_add(a, b) counts for 1 instruction,
 no matter how many IEEE FP instructions are really executed.
 
+## Run
+
+To run vericheck, use the following command:
+
+```bash
+$ ./$LOCAL_PATH/bin/valgrind --tool=vericheck -- <binary>
+```
+
+where `LOCAL_PATH` is your local path with valgrind intalled.
+
 ## Output
 
 At the end of the execution, Vericheck prints the number of FP instructions executed for each function.
